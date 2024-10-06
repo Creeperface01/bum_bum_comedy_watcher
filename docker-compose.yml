@@ -1,0 +1,33 @@
+services:
+  bot:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "${HTTP_PORT}:9000"
+    networks:
+      - symfony_network
+
+  db:
+    image: mariadb:latest
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - symfony_network
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "${ADMINER_PORT}:8080"
+    networks:
+      - symfony_network
+
+volumes:
+  db_data:
+
+networks:
+  symfony_network:
