@@ -17,7 +17,7 @@ class Event(Base):
     __tablename__ = 'events'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True)
-    link = Column(String(255), unique=True)
+    link = Column(String(255))
 
 class User(Base):
     __tablename__ = 'users'
