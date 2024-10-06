@@ -55,6 +55,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Pong"
+    )
+
+
 async def check_webside(context: CallbackContext):
     response = requests.get('https://bumbumcomedy.cz/')
 
@@ -135,6 +142,9 @@ if __name__ == '__main__':
 
     start_handler = CommandHandler('start', start)
     application.add_handler(start_handler)
+
+    ping_handler = CommandHandler('ping', ping)
+    application.add_handler(ping_handler)
 
     job_queue = application.job_queue
     job_queue.run_repeating(check_webside, interval=60, first=10)
