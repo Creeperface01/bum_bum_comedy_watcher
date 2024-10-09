@@ -23,7 +23,7 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(255), unique=True)
-    telegram_id = Column(Integer, unique=True)
+    telegram_id = Column(String(255), unique=True)
 
 mysql_user = os.environ.get('MYSQL_USER')
 mysql_password = os.environ.get('MYSQL_PASSWORD')
